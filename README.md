@@ -1,41 +1,36 @@
-## SLA-Cheeto
+## IL2CPP Resolver
+A run-time API resolver for IL2CPP Unity.
 
-## Disclaimer
-This project is created and shared for educational purposes only. I do not condone or endorse the use of this project for any illegal activities or unethical behavior. The use of this project is solely at the user's discretion. I am not held responsible for any misuse of the information or code provided in this repository.
+[External Version(Rework WIP)](https://github.com/extremeblackliu/IL2CPP_Resolver_External) | [(Old) Pre-HeaderOnly Version](https://github.com/sneakyevil/IL2CPP_Resolver/tree/old_nonheader)
 
-## Usage
+### Quick Example
+```cpp
+#include <IL2CPP_Resolver.hpp>
 
-### How to Run
-1. Inject the DLL to the game with your preferred injector
-2. Press insert to show the menu
+void SomeFunction()
+{
+    IL2CPP::Initialize(); // This needs to be called once!
 
-## Features
-- Instant Regen (Running can trigger this)
-- No Cooldown
-- No Cooldown Shadow (Enable only if you have shadow feature available)
-- God Mode
-- Kill Aura
-- Damage Hack
-- Mob Vacuum
-- Dumb Enemies (They don't attack you)
-- Mission Time (Enable this before starting a mission)
-- Time Scale
-- FPS Unlocker
-- Fov Changer
-- Skip Intro Movie (Loads the game faster)
-- Disable Web View (Disables annoying web pop-up when entering the game)
+    Unity::CGameObject* m_Local = Unity::GameObject::Find("LocalPlayer");
+    Unity::CComponent* m_LocalData = m_Local->GetComponent("PlayerData");
+    m_LocalData->SetMemberValue<bool>("CanFly", true);
+}
+```
 
-## Screenshot
-![menu](cheat/res/Solo_Leveling_ARISE_4BRSUmbeJd.png)
+### Registering OnUpdate Callback
+```cpp
+void OurUpdateFunction()
+{
+    // Your special code...
+}
 
-## Building
-1. Clone the repository: `git clone --recurse-submodules https://github.com/Taiga74164/SLA-Cheeto`.
-2. Build with your preferred IDE.
-3. Output will be in bin/
+void OnLoad()
+{
+    IL2CPP::Initialize();
 
-## Contributing
-1. Fork the repo (<https://github.com/Taiga74164/SLA-Cheeto/fork>).
-2. Create your feature branch.
-3. Commit your changes.
-4. Push your changes to the branch.
-5. Create a new pull request.
+    IL2CPP::Callback::Initialize();
+    IL2CPP::Callback::OnUpdate::Add(OurUpdateFunction);
+}
+```
+
+More: https://sneakyevil.gitbook.io/il2cpp-resolver/
