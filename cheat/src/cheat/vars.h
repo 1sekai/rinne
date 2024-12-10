@@ -19,7 +19,7 @@ public:
 	CONFIG_ENTRY_HOTKEY(bool, DamageHack, false, Hotkey());
 	//CONFIG_ENTRY_HOTKEY(bool, DamagePercentage, false, Hotkey());
 	//CONFIG_ENTRY_HOTKEY(bool, DamageFixed, false, Hotkey());
-	CONFIG_ENTRY(int, DamageHackValue, 20000);
+	CONFIG_ENTRY(int, DamageHackValue, 10000);
 	CONFIG_ENTRY_HOTKEY(bool, MobVacuum, false, Hotkey());
 	CONFIG_ENTRY(float, VacuumRange, 5.0f);
 	CONFIG_ENTRY(float, VacuumDistance, 3.0f);
